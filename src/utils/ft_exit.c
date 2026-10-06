@@ -1,0 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mtice <mtice@student.42belgium.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/02 13:39:58 by mtice             #+#    #+#             */
+/*   Updated: 2025/12/11 12:41:27 by mtice            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3D.h"
+
+//-----------------------------------------------------------------------------
+//ONLY TO BE USED IN CASE OF EXIT_FAILURE!
+//function that displays error message, and frees before exiting with FAILURE
+void	ft_exit(t_data *all, char *err_msg, int fd)
+{
+	if (err_msg)
+	{
+		ft_putendl_fd(ERR, 2);
+		ft_putendl_fd(err_msg, 2);
+	}
+	if (all)
+		free_all(all);
+	if (fd > 2)
+		close(fd);
+	exit(EXIT_FAILURE);
+}
